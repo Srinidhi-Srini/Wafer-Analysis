@@ -28,6 +28,17 @@ def solve_contact_angle_deg(a_mm, vol_mm3):
 # ==========================================
 # 2. SIDEBAR CONTROLS
 # ==========================================
+
+# ==========================================
+# 2. SIDEBAR CONTROLS
+# ==========================================
+# Hardcoded detection thresholds
+wafer_a_min = 136
+drop_s_max = 35
+drop_a_max = 134
+drop_v_min = 120
+drop_v_max = 245
+
 with st.sidebar:
     st.header("Wafer & Droplet Settings")
     wafer_diameter_mm = st.number_input("Wafer Diameter (mm)", value=100.0, step=10.0)
@@ -35,17 +46,29 @@ with st.sidebar:
     water_gamma_l = 72.8
     auto_center = st.checkbox("Auto-center on middle droplet", value=True)
 
-    st.header("Detection Thresholds")
-    wafer_a_min = st.slider("Wafer Purple (Lab A >)", 125, 160, 136)
-    drop_s_max = st.slider("Droplet Max Saturation (S <)", 10, 100, 35)
-    drop_a_max = st.slider("Droplet Max Magenta (A <)", 125, 150, 134)
-    drop_v_min = st.slider("Droplet Min Brightness (V >)", 50, 200, 120)
-    drop_v_max = st.slider("Droplet Max Brightness (V <)", 200, 255, 245)
-
     st.header("Shape & Plot Settings")
     min_circ = st.slider("Min Circularity", 0.30, 0.95, 0.60, 0.05)
     min_sol = st.slider("Min Solidity", 0.50, 0.99, 0.85, 0.05)
     vmin, vmax = st.slider("Colorbar Range (°)", 0, 90, (10, 35))
+    
+# with st.sidebar:
+#     st.header("Wafer & Droplet Settings")
+#     wafer_diameter_mm = st.number_input("Wafer Diameter (mm)", value=100.0, step=10.0)
+#     droplet_volume_ul = st.number_input("Droplet Volume (µL)", value=20.0, step=1.0)
+#     water_gamma_l = 72.8
+#     auto_center = st.checkbox("Auto-center on middle droplet", value=True)
+
+#     st.header("Detection Thresholds")
+#     wafer_a_min = st.slider("Wafer Purple (Lab A >)", 125, 160, 136)
+#     drop_s_max = st.slider("Droplet Max Saturation (S <)", 10, 100, 35)
+#     drop_a_max = st.slider("Droplet Max Magenta (A <)", 125, 150, 134)
+#     drop_v_min = st.slider("Droplet Min Brightness (V >)", 50, 200, 120)
+#     drop_v_max = st.slider("Droplet Max Brightness (V <)", 200, 255, 245)
+
+#     st.header("Shape & Plot Settings")
+#     min_circ = st.slider("Min Circularity", 0.30, 0.95, 0.60, 0.05)
+#     min_sol = st.slider("Min Solidity", 0.50, 0.99, 0.85, 0.05)
+#     vmin, vmax = st.slider("Colorbar Range (°)", 0, 90, (10, 35))
 
 # ==========================================
 # 3. FILE UPLOAD & PROCESSING
